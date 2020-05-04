@@ -1,0 +1,31 @@
+{
+  "name": "monday-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@octokit/graphql": "^4.3.1",
+    "@octokit/request": "^5.3.4",
+    "@octokit/rest": "^17.1.4",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.6.0",
+    "graphql-request": "^1.8.2",
+    "hbs": "^4.1.1",
+    "lodash.merge": "^4.6.2",
+    "prettier": "^2.0.4",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0"
+  },
+  "scripts": {
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\"",
+    "start": "node ./index.js"
+  },
+  "proxy": "http://localhost:3000"
+}
