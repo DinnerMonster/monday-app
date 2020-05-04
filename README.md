@@ -9,6 +9,7 @@ The purpose of this app:
 - The app is a one way pipeline from Monday.com to GitHub.com triggered from Monday.com webhooks.
 - Instead of using a database inside the node server, the IDs of the monday items are stored in the body of the created issue.
 - Updates are posted by parsing through issues and posting to the issue with the associated **item ID**.
+- Authentication is built around subscription ID.
 
 
 ### In progress
