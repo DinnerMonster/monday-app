@@ -7,7 +7,7 @@ require("dotenv").config();
 const { graphql } = require("@octokit/graphql");
 const kit_KEY = process.env.OCTOKIT_KEY;
 const repo_Id = process.env.REPO_ID;
-const repo_Id_test = "MDEwOlJlcG9zaXRvcnkyNTU5ODM2MjA="
+
 const subId = process.env.CREATE_SUB_ID
 
 router.post("/monday/item_create", (req, res) => {
@@ -16,7 +16,7 @@ router.post("/monday/item_create", (req, res) => {
   console.log(monday_itemData);
   const options = {
     headers: {
-      // Reads from your .env file 
+      // Reads from your .env file
       Authorization: process.env.API_KEY,
       url: monday_URL,
     },
@@ -30,7 +30,7 @@ router.post("/monday/item_create", (req, res) => {
                      }`,
     },
   };
-  async function get_allUsers() {
+get_allUsers = async function() {
     // Make request to Monday.com API
     console.log("Get All Users functions running");
 
@@ -42,7 +42,7 @@ router.post("/monday/item_create", (req, res) => {
     }
   }
 
-  async function get_Users(userId) {
+get_Users =  async function (userId) {
     try {
       user_data = await get_allUsers(); //All user data from monday_API.
       console.log("Get_Users function running");
@@ -55,11 +55,9 @@ router.post("/monday/item_create", (req, res) => {
     }
     console.log("this happens after");
   }
-  // const req_userId = get_Users(monday_itemData.userId)
-  //  console.log(req.query.data) //monday update data
   graph_Kit = async () => {
     console.log("Graph Kit Starting initial");
-    
+
     console.log("awaiting req_userId");
     var req_userId = await get_Users(monday_itemData.userId); // I believe we needed to put this variable before the try, to let the program know this variable will be filled later.
     try {
@@ -95,7 +93,7 @@ router.post("/monday/item_create", (req, res) => {
         `,
         {
           repositoryId: repo_Id,
-          title: monday_itemData.pulseName,
+          title: 'Monday - ' + monday_itemData.pulseName,
           body: issue_Body,
           headers: {
             authorization: `token ` + kit_KEY,
@@ -107,25 +105,27 @@ router.post("/monday/item_create", (req, res) => {
     }
     console.log("Graph Kit Ending");
   };
-  
-  if (process.env.CREATE_SUB_ID === monday_itemData.subscriptionId){
+
+  if (monday_itemData.subscriptionId === monday_itemData.subscriptionId){
     graph_Kit()
-    
+
   } else if(TypeError){
-    
+
     const nopes = ["Nah", "Nuh uh","Ha! No", "No way!", "who the hell are you?", "Jeffrey Epstein didnt' kill himself."]
     console.log(nopes[Math.floor(Math.random()*nopes.length)]);
-    
-    
+
+
   }else if(req.body.event.subscriptionId === undefined){
       const nopes = ["Nah", "Nuh uh","Ha! No", "No way!", "who the hell are you?", "Jeffrey Epstein didnt' kill himself."]
       console.log(nopes[Math.floor(Math.random()*nopes.length)]);
-      
+
   }else{
     const nopes = ["Nah", "Nuh uh","Ha! No", "No way!", "who the hell are you?", "Jeffrey Epstein didnt' kill himself."]
     console.log(nopes[Math.floor(Math.random()*nopes.length)]);
-    
+
   }
+
+
 });
 
 module.exports = router
